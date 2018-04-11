@@ -3,14 +3,9 @@
 
 extern crate rocket;
 
-use rocket::http::Status;
-
 #[get("/speak/<value>")]
-fn speak(value: u32) -> Result<String, Status> {
-    match robot_speak(value) {
-        Some(result) => Ok(result),
-        None => Err(Status::NotFound),
-    }
+fn speak(value: u32) -> Option<String> {
+    robot_speak(value)
 }
 
 fn main() {
